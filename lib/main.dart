@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kortobaa_mobile_flutter_task/core/services/localization/app_localizations.dart';
+import 'package:kortobaa_mobile_flutter_task/ui/views/home_page.dart';
 
 void main() => runApp(KortobaaApp());
 
@@ -9,8 +10,8 @@ class KortobaaApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        primaryColor: Color(0xffb2dfddb),
+      theme: ThemeData.light().copyWith(
+        primaryColor: Color(0xffb2dfdb),
         accentColor: Color(0xff39796b),
         textTheme: GoogleFonts.almaraiTextTheme(
           Theme.of(context).textTheme,
@@ -39,6 +40,7 @@ class KortobaaApp extends StatelessWidget {
         // from the list (Arabic, in this case).
         return supportedLocales.first;
       },
+      home: HomePage(),
     );
   }
 }
