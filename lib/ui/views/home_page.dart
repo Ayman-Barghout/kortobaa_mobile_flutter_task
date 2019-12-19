@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:kortobaa_mobile_flutter_task/core/services/localization/app_localizations.dart';
+import 'package:kortobaa_mobile_flutter_task/core/services/repository/posts_repository.dart';
+import 'package:kortobaa_mobile_flutter_task/core/services/repository/user_repository.dart';
 import 'package:kortobaa_mobile_flutter_task/ui/shared/text_styles.dart';
+import 'package:kortobaa_mobile_flutter_task/ui/views/account_view.dart';
+import 'package:kortobaa_mobile_flutter_task/ui/views/home_view.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key key}) : super(key: key);
@@ -61,10 +65,16 @@ class _HomePageState extends State<HomePage>
           ],
         ),
       ),
-      body: Center(
-        child: Text(
-          localization.translate(_selection),
-        ),
+      body: TabBarView(
+        controller: _controller,
+        children: <Widget>[
+          HomeView(
+            posts: PostsRepository.getPosts(),
+          ),
+          AccountView(
+            user: UserRepository.getUser(),
+          ),
+        ],
       ),
       floatingActionButton: _controller.index == 0
           ? FloatingActionButton(

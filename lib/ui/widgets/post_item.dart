@@ -11,60 +11,71 @@ class PostItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Card(
+        elevation: 2,
         child: Column(
-      children: <Widget>[
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                IconButton(
-                  icon: Icon(
-                    Icons.share,
-                    color: appColors.placeHolderColor,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      CircleAvatar(
+                        backgroundColor: appColors.placeHolderColor,
+                      ),
+                      SizedBox(
+                        width: 8,
+                      ),
+                      Text(
+                        post.title,
+                        style: AppTextStyles.headerStyle.copyWith(
+                          fontSize: 14,
+                        ),
+                      ),
+                    ],
                   ),
-                  onPressed: () {},
-                ),
-                IconButton(
-                  icon: Icon(
-                    Icons.bookmark,
-                    color: appColors.placeHolderColor,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      IconButton(
+                        icon: Icon(
+                          Icons.share,
+                          color: appColors.lightTextColor,
+                        ),
+                        onPressed: () {},
+                      ),
+                      IconButton(
+                        icon: Icon(
+                          Icons.bookmark,
+                          color: appColors.lightTextColor,
+                        ),
+                        onPressed: () {},
+                      ),
+                      IconButton(
+                        icon: Icon(
+                          Icons.favorite,
+                          color: appColors.lightTextColor,
+                        ),
+                        onPressed: () {},
+                      ),
+                    ],
                   ),
-                  onPressed: () {},
-                ),
-                IconButton(
-                  icon: Icon(
-                    Icons.favorite,
-                    color: appColors.placeHolderColor,
-                  ),
-                  onPressed: () {},
-                ),
-              ],
+                ],
+              ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                CircleAvatar(
-                  backgroundColor: appColors.placeHolderColor,
-                ),
-                Text(
-                  post.title,
-                  style: AppTextStyles.headerStyle.copyWith(
-                    fontSize: 14,
-                  ),
-                ),
-              ],
+            Image.asset(post.imageUri),
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+              child: Text(
+                post.description,
+                style: AppTextStyles.subHeaderStyle,
+              ),
             )
           ],
-        ),
-        Image.asset(post.imageUri),
-        Text(
-          post.description,
-          style: AppTextStyles.subHeaderStyle,
-        )
-      ],
-    ));
+        ));
   }
 }

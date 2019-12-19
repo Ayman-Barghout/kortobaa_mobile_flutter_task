@@ -12,7 +12,7 @@ class AppTextStyles {
       color: darkTextColor, fontSize: 21, fontWeight: FontWeight.bold);
 
   static const TextStyle subHeaderStyle = TextStyle(
-      color: darkTextColor, fontSize: 14, fontWeight: FontWeight.normal);
+      color: darkTextColor, fontSize: 14, fontWeight: FontWeight.w500);
 
   static TextStyle navigationTextStyle = GoogleFonts.almarai(
     textStyle: TextStyle(
@@ -21,4 +21,7 @@ class AppTextStyles {
 
   static const TextStyle lightTextStyle = TextStyle(
       color: lightTextColor, fontSize: 15, fontWeight: FontWeight.bold);
+
+  static const TextStyle buttonsTextStyle = TextStyle(
+      color: darkTextColor, fontSize: 15, fontWeight: FontWeight.bold);
 }

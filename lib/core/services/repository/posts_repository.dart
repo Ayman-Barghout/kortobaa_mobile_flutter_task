@@ -1,7 +1,7 @@
 import 'package:kortobaa_mobile_flutter_task/core/models/post.dart';
 
-class UserRepository {
-  List<Post> getPosts() {
+class PostsRepository {
+  static List<Post> getPosts() {
     return <Post>[
       Post(
           1,
