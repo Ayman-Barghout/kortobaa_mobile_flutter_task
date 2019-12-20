@@ -11,9 +11,7 @@ class NewPostDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AppLocalizations localizations = AppLocalizations.of(context);
-    return AnimatedPadding(
-      padding: MediaQuery.of(context).viewInsets +
-          const EdgeInsets.symmetric(horizontal: 40.0, vertical: 24.0),
+    return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(7)),
       child: SingleChildScrollView(
         child: Container(
