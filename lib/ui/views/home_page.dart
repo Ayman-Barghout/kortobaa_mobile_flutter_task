@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kortobaa_mobile_flutter_task/core/providers/home_page_provider.dart';
 import 'package:kortobaa_mobile_flutter_task/core/services/localization/app_localizations.dart';
 import 'package:kortobaa_mobile_flutter_task/core/services/repository/posts_repository.dart';
 import 'package:kortobaa_mobile_flutter_task/core/services/repository/user_repository.dart';
@@ -7,84 +8,84 @@ import 'package:kortobaa_mobile_flutter_task/ui/views/account_view.dart';
 import 'package:kortobaa_mobile_flutter_task/ui/views/home_view.dart';
 import 'package:kortobaa_mobile_flutter_task/ui/widgets/app_drawer.dart';
 import 'package:kortobaa_mobile_flutter_task/ui/widgets/new_post_dialog.dart';
+import 'package:provider/provider.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key key}) : super(key: key);
-
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
-  TabController _controller;
-  String _selection;
-
-  void initState() {
-    super.initState();
-    _controller = new TabController(length: 2, vsync: this);
-    _selection = "homepage";
-    _controller.addListener(_handleSelection);
-  }
-
-  void _handleSelection() {
-    setState(() {
-      _selection = _controller.index == 0 ? "homepage" : "account";
-    });
-  }
-
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AppLocalizations localization = AppLocalizations.of(context);
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 10,
-        title: Text(
-          localization.translate(_selection),
-          style: AppTextStyles.appTitleStyle,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<HomePageProvider>(
+          create: (_) => HomePageProvider(),
         ),
-        bottom: TabBar(
-          indicatorColor: Colors.white,
-          labelPadding: EdgeInsets.only(bottom: 17, top: 12),
-          controller: _controller,
-          tabs: <Widget>[
-            Text(
-              localization.translate('homepage'),
-              style: AppTextStyles.navigationTextStyle,
-            ),
-            Text(
-              localization.translate('account'),
-              style: AppTextStyles.navigationTextStyle,
-            ),
-          ],
-        ),
-      ),
-      drawer: Drawer(
-        child: AppDrawer(user: UserRepository.getUser()),
-      ),
-      body: TabBarView(
-        controller: _controller,
-        children: <Widget>[
-          HomeView(
-            posts: PostsRepository.getPosts(),
-          ),
-          AccountView(
-            user: UserRepository.getUser(),
-          ),
-        ],
-      ),
-      floatingActionButton:
-          _controller.index == 0 && !_controller.indexIsChanging
-              ? FloatingActionButton(
-                  child: Icon(
-                    Icons.add,
+      ],
+      child: Builder(builder: (context) {
+        HomePageProvider homePageProvider =
+            Provider.of<HomePageProvider>(context);
+        return DefaultTabController(
+          length: 2,
+          child: Scaffold(
+            appBar: AppBar(
+              elevation: 10,
+              title: Text(
+                localization.translate(
+                  homePageProvider.selection[homePageProvider.index],
+                ),
+                style: AppTextStyles.appTitleStyle,
+              ),
+              bottom: TabBar(
+                indicatorColor: Colors.white,
+                onTap: (index) {
+                  homePageProvider.index = index;
+                },
+                labelPadding: EdgeInsets.only(bottom: 17, top: 12),
+                tabs: <Widget>[
+                  Text(
+                    localization.translate('homepage'),
+                    style: AppTextStyles.navigationTextStyle,
                   ),
-                  onPressed: () => showDialog(
-                    context: context,
-                    builder: (ctx) => NewPostDialog(),
+                  Text(
+                    localization.translate('account'),
+                    style: AppTextStyles.navigationTextStyle,
                   ),
-                  backgroundColor: Theme.of(context).accentColor,
-                )
-              : null,
+                ],
+              ),
+            ),
+            drawer: Drawer(
+              child: AppDrawer(user: UserRepository.getUser()),
+            ),
+            body: TabBarView(
+              children: <Widget>[
+                HomeView(
+                  posts: PostsRepository.getPosts(),
+                ),
+                AccountView(
+                  user: UserRepository.getUser(),
+                ),
+              ],
+            ),
+            floatingActionButton: homePageProvider.index == 0
+                ? Padding(
+                    padding: EdgeInsets.only(right: 25),
+                    child: Align(
+                      alignment: Alignment.bottomRight,
+                      child: FloatingActionButton(
+                        child: Icon(
+                          Icons.add,
+                        ),
+                        onPressed: () => showDialog(
+                          context: context,
+                          builder: (ctx) => NewPostDialog(),
+                        ),
+                        backgroundColor: Theme.of(context).accentColor,
+                      ),
+                    ),
+                  )
+                : null,
+          ),
+        );
+      }),
     );
   }
 }

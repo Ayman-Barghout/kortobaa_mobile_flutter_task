@@ -25,6 +25,8 @@ dependencies:
 
   google_fonts: ^0.2.0
   device_preview: ^0.2.6
+  provider: ^3.2.0
+
 
 
 dev_dependencies:
