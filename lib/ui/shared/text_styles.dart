@@ -22,6 +22,12 @@ class AppTextStyles {
   static const TextStyle lightTextStyle = TextStyle(
       color: lightTextColor, fontSize: 15, fontWeight: FontWeight.bold);
 
+  static const TextStyle dismissButtonStyle = TextStyle(
+      color: lighterTextColor, fontSize: 14, fontWeight: FontWeight.bold);
+
+  static const TextStyle lighterTextStyle = TextStyle(
+      color: lighterTextColor, fontSize: 12, fontWeight: FontWeight.w500);
+
   static const TextStyle buttonsTextStyle = TextStyle(
       color: darkTextColor, fontSize: 15, fontWeight: FontWeight.bold);
 }

@@ -1,10 +1,16 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kortobaa_mobile_flutter_task/core/services/localization/app_localizations.dart';
 import 'package:kortobaa_mobile_flutter_task/ui/views/home_page.dart';
 
-void main() => runApp(KortobaaApp());
+void main() => runApp(
+      // DevicePreview(
+      // builder: (context) =>
+      KortobaaApp(),
+      // ),
+    );
 
 class KortobaaApp extends StatelessWidget {
   @override
@@ -17,6 +23,10 @@ class KortobaaApp extends StatelessWidget {
           Theme.of(context).textTheme,
         ),
       ),
+      // Device Preview config
+      // TODO: remove after getting ready for delivery
+      // locale: DevicePreview.of(context).locale,
+      // builder: DevicePreview.appBuilder,
       // Localization setup
       supportedLocales: [
         Locale('ar', 'EG'),

@@ -5,6 +5,8 @@ import 'package:kortobaa_mobile_flutter_task/core/services/repository/user_repos
 import 'package:kortobaa_mobile_flutter_task/ui/shared/text_styles.dart';
 import 'package:kortobaa_mobile_flutter_task/ui/views/account_view.dart';
 import 'package:kortobaa_mobile_flutter_task/ui/views/home_view.dart';
+import 'package:kortobaa_mobile_flutter_task/ui/widgets/app_drawer.dart';
+import 'package:kortobaa_mobile_flutter_task/ui/widgets/new_post_dialog.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key key}) : super(key: key);
@@ -13,8 +15,7 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage>
-    with SingleTickerProviderStateMixin {
+class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   TabController _controller;
   String _selection;
 
@@ -36,6 +37,7 @@ class _HomePageState extends State<HomePage>
     AppLocalizations localization = AppLocalizations.of(context);
     return Scaffold(
       appBar: AppBar(
+        elevation: 10,
         title: Text(
           localization.translate(_selection),
           style: AppTextStyles.appTitleStyle,
@@ -57,13 +59,7 @@ class _HomePageState extends State<HomePage>
         ),
       ),
       drawer: Drawer(
-        child: Column(
-          children: <Widget>[
-            ListTile(
-              title: Text('hello'),
-            ),
-          ],
-        ),
+        child: AppDrawer(user: UserRepository.getUser()),
       ),
       body: TabBarView(
         controller: _controller,
@@ -76,15 +72,19 @@ class _HomePageState extends State<HomePage>
           ),
         ],
       ),
-      floatingActionButton: _controller.index == 0
-          ? FloatingActionButton(
-              child: Icon(
-                Icons.add,
-              ),
-              onPressed: () {},
-              backgroundColor: Theme.of(context).accentColor,
-            )
-          : null,
+      floatingActionButton:
+          _controller.index == 0 && !_controller.indexIsChanging
+              ? FloatingActionButton(
+                  child: Icon(
+                    Icons.add,
+                  ),
+                  onPressed: () => showDialog(
+                    context: context,
+                    builder: (ctx) => NewPostDialog(),
+                  ),
+                  backgroundColor: Theme.of(context).accentColor,
+                )
+              : null,
     );
   }
 }
