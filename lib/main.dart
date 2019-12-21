@@ -12,7 +12,10 @@ class KortobaaApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData.light().copyWith(
+      theme: ThemeData(
+        brightness: Brightness.light,
+        primaryIconTheme: IconThemeData(color: Colors.white),
+        fontFamily: 'Almarai',
         primaryColor: appColors.primaryColor,
         accentColor: appColors.accentColor,
         textTheme: GoogleFonts.almaraiTextTheme(

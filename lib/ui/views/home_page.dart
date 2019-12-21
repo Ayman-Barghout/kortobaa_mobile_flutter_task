@@ -37,6 +37,7 @@ class _HomePageState extends State<HomePage>
   Widget build(BuildContext context) {
     AppLocalizations localization = AppLocalizations.of(context);
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         elevation: 10,
         title: Text(

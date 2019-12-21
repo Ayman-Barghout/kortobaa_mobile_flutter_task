@@ -15,73 +15,76 @@ class AccountView extends StatelessWidget {
     double queryHeight = MediaQuery.of(context).size.height;
     double queryWidth = MediaQuery.of(context).size.width;
     AppLocalizations localizations = AppLocalizations.of(context);
-    return Stack(
-      children: <Widget>[
-        Container(
-          height: queryHeight * 0.35,
-          decoration: BoxDecoration(
-              color: Theme.of(context).accentColor,
-              boxShadow: <BoxShadow>[
-                BoxShadow(
-                  color: appColors.boxShadowColor,
-                  blurRadius: 4,
-                  offset: Offset(0, 4),
-                ),
-              ]),
-        ),
-        Container(
-          width: queryWidth,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              SizedBox(
-                height: queryHeight * 0.23,
-              ),
-              CircleAvatar(
-                radius: queryHeight * 0.1,
-                backgroundImage: AssetImage(user.profilePictureUri),
-              ),
-              SizedBox(
-                height: queryHeight * 0.01,
-              ),
-              Text(
-                user.userName,
-                style: AppTextStyles.headerStyle,
-              ),
-              SizedBox(
-                height: queryHeight * 0.01,
-              ),
-              Text(
-                user.email,
-                style: AppTextStyles.lightTextStyle,
-              ),
-              SizedBox(
-                height: queryHeight * 0.08,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  RoundIconButtonWithLabel(
-                    iconData: Icons.edit,
-                    onPressed: () {},
-                    label: localizations.translate('edit_info'),
+    return SingleChildScrollView(
+      child: Stack(
+        children: <Widget>[
+          Container(
+            height: queryHeight * 0.35,
+            decoration: BoxDecoration(
+                color: Theme.of(context).accentColor,
+                boxShadow: <BoxShadow>[
+                  BoxShadow(
+                    color: appColors.boxShadowColor,
+                    blurRadius: 4,
+                    offset: Offset(0, 4),
                   ),
-                  RoundIconButtonWithLabel(
-                    iconData: Icons.settings,
-                    onPressed: () {},
-                    label: localizations.translate('settings'),
-                  ),
-                  RoundIconButtonWithLabel(
-                    iconData: Icons.star,
-                    onPressed: () {},
-                    label: localizations.translate('favorites'),
-                  ),
-                ],
-              )
-            ],
+                ]),
           ),
-        ),
-      ],
+          Container(
+            padding: EdgeInsets.only(bottom: 20),
+            width: queryWidth,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                SizedBox(
+                  height: queryHeight * 0.23,
+                ),
+                CircleAvatar(
+                  radius: queryHeight * 0.1,
+                  backgroundImage: AssetImage(user.profilePictureUri),
+                ),
+                SizedBox(
+                  height: queryHeight * 0.01,
+                ),
+                Text(
+                  user.userName,
+                  style: AppTextStyles.headerStyle,
+                ),
+                SizedBox(
+                  height: queryHeight * 0.01,
+                ),
+                Text(
+                  user.email,
+                  style: AppTextStyles.lightTextStyle,
+                ),
+                SizedBox(
+                  height: queryHeight * 0.08,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    RoundIconButtonWithLabel(
+                      iconData: Icons.edit,
+                      onPressed: () {},
+                      label: localizations.translate('edit_info'),
+                    ),
+                    RoundIconButtonWithLabel(
+                      iconData: Icons.settings,
+                      onPressed: () {},
+                      label: localizations.translate('settings'),
+                    ),
+                    RoundIconButtonWithLabel(
+                      iconData: Icons.star,
+                      onPressed: () {},
+                      label: localizations.translate('favorites'),
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
