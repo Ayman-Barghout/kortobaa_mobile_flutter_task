@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+const Color primaryColor = Color(0xffb2dfdb);
+const Color accentColor = Color(0xff39796b);
 const Color statusBarColor = Color(0xff82ada9);
 const Color placeHolderColor = Color(0x61000000);
 const Color lightPlaceHolderColor = Color(0xffd8d8d8);

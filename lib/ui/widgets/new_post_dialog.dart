@@ -11,98 +11,101 @@ class NewPostDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AppLocalizations localizations = AppLocalizations.of(context);
+    double queryHeight = MediaQuery.of(context).size.height;
+    bool isPortrait =
+        MediaQuery.of(context).orientation == Orientation.portrait;
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(7)),
       child: SingleChildScrollView(
         child: Container(
-          height: MediaQuery.of(context).size.height * 0.5,
+          height: queryHeight * (isPortrait ? 0.57 : 0.81),
           padding: EdgeInsets.all(8),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.end,
+          child: ListView(
             children: <Widget>[
-              InkWell(
-                onTap: () {},
-                child: Container(
-                    color: appColors.lightPlaceHolderColor,
-                    height: MediaQuery.of(context).size.height * 0.2,
-                    width: MediaQuery.of(context).size.width,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Icon(
-                          Icons.camera_alt,
-                          color: appColors.lighterTextColor,
-                          size: MediaQuery.of(context).size.width * 0.18,
-                        ),
-                        Text(
-                          'Upload photo',
-                          style: AppTextStyles.lighterTextStyle,
-                        ),
-                      ],
-                    )),
-              ),
-              Flexible(
-                child: FractionallySizedBox(
-                  heightFactor: 0.5,
-                ),
-              ),
               Container(
+                height: queryHeight * (isPortrait ? 0.55 : 0.75),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Text(
-                      localizations.translate('write_description'),
-                      style: AppTextStyles.lighterTextStyle,
+                    InkWell(
+                      onTap: () {},
+                      child: Container(
+                          color: appColors.lightPlaceHolderColor,
+                          height: queryHeight * (isPortrait ? 0.22 : 0.35),
+                          width: double.infinity,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Icon(
+                                Icons.camera_alt,
+                                color: appColors.lighterTextColor,
+                                size: MediaQuery.of(context).size.width *
+                                    (isPortrait ? 0.18 : 0.1),
+                              ),
+                              Text(
+                                'Upload photo',
+                                style: AppTextStyles.lighterTextStyle,
+                              ),
+                            ],
+                          )),
                     ),
-                    Theme(
-                      child: TextField(
-                        decoration: InputDecoration(
-                          border: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Theme.of(context).accentColor,
-                            ),
+                    Container(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            localizations.translate('write_description'),
+                            style: AppTextStyles.lighterTextStyle,
                           ),
-                        ),
-                        keyboardType: TextInputType.multiline,
-                        maxLength: 120,
-                        maxLines: 2,
-                        inputFormatters: <TextInputFormatter>[
-                          LengthLimitingTextInputFormatter(120),
+                          Theme(
+                            child: TextField(
+                              decoration: InputDecoration(
+                                border: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Theme.of(context).accentColor,
+                                  ),
+                                ),
+                              ),
+                              keyboardType: TextInputType.multiline,
+                              maxLength: 120,
+                              maxLines: 2,
+                              inputFormatters: <TextInputFormatter>[
+                                LengthLimitingTextInputFormatter(120),
+                              ],
+                            ),
+                            data: Theme.of(context).copyWith(
+                                primaryColor: Theme.of(context).accentColor),
+                          ),
                         ],
                       ),
-                      data: Theme.of(context).copyWith(
-                          primaryColor: Theme.of(context).accentColor),
+                    ),
+                    // FractionallySizedBox(
+                    //   heightFactor: 1.6,
+                    // ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: <Widget>[
+                        FlatButton(
+                          child: Text(
+                            localizations.translate('discard'),
+                            style: AppTextStyles.dismissButtonStyle,
+                          ),
+                          onPressed: () => Navigator.pop(context),
+                        ),
+                        RaisedButton(
+                          color: Theme.of(context).accentColor,
+                          child: Text(
+                            localizations.translate('post'),
+                            style: AppTextStyles.navigationTextStyle,
+                          ),
+                          onPressed: () => Navigator.pop(context),
+                        ),
+                      ],
                     ),
                   ],
                 ),
               ),
-              Flexible(
-                child: FractionallySizedBox(
-                  heightFactor: 1.5,
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: <Widget>[
-                  FlatButton(
-                    child: Text(
-                      localizations.translate('discard'),
-                      style: AppTextStyles.dismissButtonStyle,
-                    ),
-                    onPressed: () => Navigator.pop(context),
-                  ),
-                  RaisedButton(
-                    color: Theme.of(context).accentColor,
-                    child: Text(
-                      localizations.translate('post'),
-                      style: AppTextStyles.navigationTextStyle,
-                    ),
-                    onPressed: () => Navigator.pop(context),
-                  ),
-                ],
-              )
             ],
           ),
         ),
