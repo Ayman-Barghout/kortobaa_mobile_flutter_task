@@ -8,5 +8,14 @@
     "favorites": "Favorites",
     "post": "Post",
     "discard": "Discard",
-    "write_description": "Write a photo description"
+    "write_description": "Write a photo description",
+    "name": "Name",
+    "email": "Email",
+    "profile_picture": "Your profile picture",
+    "pick_picture": "Pick a photo",
+    "language": "Language",
+    "save": "Save",
+    "select_language": "Select a language",
+    "arabic": "Arabic",
+    "english": "English"
 }

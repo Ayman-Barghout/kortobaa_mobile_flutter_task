@@ -1,20 +1,17 @@
 class User {
-  User(this.id, this.userName, this.email, this.profilePictureUri);
+  User(this.userName, this.email, this.profilePictureUri);
 
-  final int id;
   final String userName;
   final String email;
   final String profilePictureUri;
 
-  User.fromMap(Map<String, dynamic> map)
-      : this.id = map['id'],
-        this.userName = map['user_name'],
+  User.fromJson(Map<String, dynamic> map)
+      : this.userName = map['user_name'],
         this.email = map['email'],
         this.profilePictureUri = map["picture_uri"];
 
-  Map<String, dynamic> toMap() {
+  Map<String, dynamic> toJson() {
     return {
-      'id': this.id,
       'user_name': this.userName,
       'email': this.email,
       'picture_uri': this.profilePictureUri

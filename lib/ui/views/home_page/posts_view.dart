@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:kortobaa_mobile_flutter_task/core/models/post.dart';
 import 'package:kortobaa_mobile_flutter_task/ui/widgets/post_item.dart';
 
-class HomeView extends StatelessWidget {
-  const HomeView({Key key, @required this.posts}) : super(key: key);
+class PostsView extends StatelessWidget {
+  const PostsView({Key key, @required this.posts}) : super(key: key);
 
   final List<Post> posts;
 

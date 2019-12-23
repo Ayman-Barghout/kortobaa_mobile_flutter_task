@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kortobaa_mobile_flutter_task/ui/shared/text_styles.dart';
+import 'package:kortobaa_mobile_flutter_task/ui/shared/text_styles.dart'
+    as textStyles;
 
 class RoundIconButtonWithLabel extends StatelessWidget {
   const RoundIconButtonWithLabel({
@@ -33,7 +34,7 @@ class RoundIconButtonWithLabel extends StatelessWidget {
         ),
         Text(
           label,
-          style: AppTextStyles.buttonsTextStyle,
+          style: textStyles.roundIconButtonsTextStyle,
         ),
       ],
     );

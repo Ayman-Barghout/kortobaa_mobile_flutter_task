@@ -2,15 +2,20 @@
 
 An application for Kortobaa mobile flutter task
 
-## Getting Started
+## Packages used
 
-This project is a starting point for a Flutter application.
+- Provider for state management.
+- Shared Preferences for saving key value pairs locally (Locale, User info).
 
-A few resources to get you started if this is your first Flutter project:
+## Project Structue
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+- Core folder containing models, services and providers.
+- UI folder containing the UI separated into views, widgets and a folder for shared values like colors and text styles.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Screens
+
+- Homepage with two tabs to show posts feed and user's account info.
+- A dialog (Screen) for user to add new posts.
+- A bottom sheet modal for editing user info.
+- A settings screen to pick locale (and other settings if available).
+- A favorites Page where user can view his favorited posts.

@@ -8,5 +8,14 @@
     "favorites": "المفضلة",
     "post": "نشر",
     "discard": "تجاهل",
-    "write_description": "اكتب تعليقا حول الصورة"
+    "write_description": "اكتب تعليقا حول الصورة",
+    "name": "الأسم",
+    "email": "الإيميل",
+    "profile_picture": "الصورة الشخصية لملفك",
+    "pick_picture": "اختر صورة",
+    "language": "اللغة",
+    "save": "احفظ التغييرات",
+    "select_language": "اختر اللغة",
+    "arabic": "العربية",
+    "english": "الإنجليزية"
 }
