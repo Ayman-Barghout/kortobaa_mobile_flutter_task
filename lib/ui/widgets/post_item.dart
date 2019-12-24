@@ -18,6 +18,7 @@ class PostItem extends StatelessWidget {
   Widget build(BuildContext context) {
     FavoritesProvider favoritesProvider =
         Provider.of<FavoritesProvider>(context);
+
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Card(
@@ -73,9 +74,6 @@ class PostItem extends StatelessWidget {
                                     : appColors.lightTextColor,
                           ),
                           onPressed: () {
-                            print(post.id);
-                            print(favoritesProvider.favoritesId
-                                .contains(post.id));
                             if (favoritesProvider.favoritesId
                                 .contains(post.id)) {
                               favoritesProvider.removeFavorite(post);

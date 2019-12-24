@@ -26,7 +26,7 @@ class PostsRepository {
   List<Post> fetchPosts() {
     List<String> postsString = sharedPreferences.getStringList('posts');
     if (postsString == null) {
-      return <Post>[
+      List<Post> posts = <Post>[
         Post(
           1,
           "عنوان المقالة 1",
@@ -40,6 +40,9 @@ class PostsRepository {
           "assets/images/post_2.png",
         ),
       ];
+      sharedPreferences.setStringList(
+          'posts', posts.map((post) => json.encode(post..toJson())).toList());
+      return posts;
     } else {
       return postsString
           .map((postJson) => Post.fromJson(json.decode(postJson)))

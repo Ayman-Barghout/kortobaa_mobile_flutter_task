@@ -9,12 +9,15 @@ class FavoritesRepository {
   Future<void> addFavorite(Post post) async {
     List<String> favoritesString = sharedPreferences.getStringList('favorites');
 
-    print(favoritesString);
     if (favoritesString == null) {
       await sharedPreferences.setStringList(
           'favorites', [post.id].map((value) => value.toString()).toList());
     } else {
       List<int> favoritesId = favoritesString.map((s) => int.parse(s)).toList();
+      if (!favoritesId.contains(post.id)) {
+        favoritesId.add(post.id);
+      }
+
       await sharedPreferences.setStringList(
           'favorites', favoritesId.map((n) => n.toString()).toList());
     }
@@ -50,7 +53,7 @@ class FavoritesRepository {
         ];
       }
 
-      return posts.where((post) => favoritesId.contains(favoritesId)).toList();
+      return posts.where((post) => favoritesId.contains(post.id)).toList();
     }
   }
 

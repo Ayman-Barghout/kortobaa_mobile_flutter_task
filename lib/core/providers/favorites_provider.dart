@@ -50,6 +50,7 @@ class FavoritesProvider with ChangeNotifier {
         FavoritesRepository(sharedPreferences: sharedPreferences);
     favorites = _favoritesRepository.fetchFavorites();
     favoritesId = favorites.map((post) => post.id).toList();
+
     loading = false;
   }
 }

@@ -46,7 +46,7 @@ class _NewPostDialogState extends State<NewPostDialog> {
         MediaQuery.of(context).orientation == Orientation.portrait;
 
     PostsProvider postsProvider = Provider.of<PostsProvider>(context);
-    // New post ID is one more than the last post
+    // New post ID is last post incremented by one
     int postId = postsProvider.posts.length + 1;
 
     return Material(
