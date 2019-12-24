@@ -6,14 +6,20 @@ Note: the project was created with flutter sdk on ``` BETA ```  channel.
 
 ## Packages used
 
-- Provider for state management.
-- Shared Preferences for saving key value pairs locally, creating a local backend for posts, user info and favorites.
-- Image picker for picking images for posts and profile picture. 
+- `Provider` for state management.
+- `Shared Preferences` for saving key value pairs locally, creating a local backend for posts, user info and favorites.
+- `Image picker` for picking images for posts and profile picture. 
 
 ## Project Structue
 
-- Core folder containing models, services and providers.
-- UI folder containing the UI separated into views and widgets folders and a folder for shared values like colors and text styles.
+* `assets` folder for images and fonts.
+
+* `i18n` folder for json files holding localization values.
+
+* `lib` folder:
+    - Core folder containing `models`, `services` and `providers`.
+    - UI folder containing the UI separated into `views` and `widgets` folders and a folder for `shared` values like colors and text styles.
+
 
 ## Screens
 
