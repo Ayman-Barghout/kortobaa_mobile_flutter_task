@@ -17,5 +17,7 @@
     "save": "Save",
     "select_language": "Select a language",
     "arabic": "Arabic",
-    "english": "English"
+    "english": "English",
+    "save_changes": "Click the button to save changes",
+    "no_favorites": "There are no favorited posts"
 }

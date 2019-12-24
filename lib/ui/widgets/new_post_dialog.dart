@@ -15,6 +15,7 @@ class NewPostDialog extends StatelessWidget {
     double queryHeight = MediaQuery.of(context).size.height;
     bool isPortrait =
         MediaQuery.of(context).orientation == Orientation.portrait;
+
     return Material(
       color: Colors.black.withOpacity(0.47),
       // AnimatedPadding to fix keyboard covering textfield issues
@@ -26,7 +27,7 @@ class NewPostDialog extends StatelessWidget {
           child: Container(
             padding: EdgeInsets.all(8),
             height: queryHeight * (isPortrait ? 0.52 : 0.75),
-            width: MediaQuery.of(context).size.width - 16,
+            width: MediaQuery.of(context).size.width - (isPortrait ? 16 : 32),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(7),
               color: Colors.white,

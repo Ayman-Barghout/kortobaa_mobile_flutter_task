@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:kortobaa_mobile_flutter_task/core/models/post.dart';
+import 'package:kortobaa_mobile_flutter_task/core/providers/favorites_provider.dart';
 import 'package:kortobaa_mobile_flutter_task/ui/shared/text_styles.dart'
     as textStyles;
 import 'package:kortobaa_mobile_flutter_task/ui/shared/app_colors.dart'
     as appColors;
+import 'package:provider/provider.dart';
 
 class PostItem extends StatelessWidget {
   const PostItem({Key key, this.post}) : super(key: key);
@@ -12,6 +14,8 @@ class PostItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    FavoritesProvider favoritesProvider =
+        Provider.of<FavoritesProvider>(context);
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Card(
@@ -61,9 +65,22 @@ class PostItem extends StatelessWidget {
                         IconButton(
                           icon: Icon(
                             Icons.favorite,
-                            color: appColors.lightTextColor,
+                            color:
+                                favoritesProvider.favoritesId.contains(post.id)
+                                    ? Colors.red
+                                    : appColors.lightTextColor,
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            print(post.id);
+                            print(favoritesProvider.favoritesId
+                                .contains(post.id));
+                            if (favoritesProvider.favoritesId
+                                .contains(post.id)) {
+                              favoritesProvider.removeFavorite(post);
+                            } else {
+                              favoritesProvider.addFavorite(post);
+                            }
+                          },
                         ),
                       ],
                     ),

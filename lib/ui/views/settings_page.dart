@@ -11,8 +11,7 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AppLocalizations localizations = AppLocalizations.of(context);
-    LocaleProvider localeProvider =
-        Provider.of<LocaleProvider>(context, listen: false);
+    LocaleProvider localeProvider = Provider.of<LocaleProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text(

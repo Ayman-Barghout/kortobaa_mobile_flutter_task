@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kortobaa_mobile_flutter_task/core/providers/locale_provider.dart';
 import 'package:kortobaa_mobile_flutter_task/core/services/localization/app_localizations.dart';
-import 'package:kortobaa_mobile_flutter_task/core/services/repository/posts_repository.dart';
 import 'package:kortobaa_mobile_flutter_task/ui/shared/text_styles.dart'
     as textStyles;
 import 'package:kortobaa_mobile_flutter_task/ui/views/home_page/account_view.dart';
@@ -69,9 +68,7 @@ class _HomePageState extends State<HomePage>
       body: TabBarView(
         controller: _controller,
         children: <Widget>[
-          PostsView(
-            posts: PostsRepository.fetchPosts(),
-          ),
+          PostsView(),
           AccountView(),
         ],
       ),

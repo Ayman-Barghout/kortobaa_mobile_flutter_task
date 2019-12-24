@@ -15,7 +15,8 @@ class UserProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void updateUser(String userName, String email, String imageUri) async {
+  Future<void> updateUser(
+      String userName, String email, String imageUri) async {
     await _userRepository.updateUser(_user, userName, email, imageUri);
     user = _userRepository.fetchUser();
   }

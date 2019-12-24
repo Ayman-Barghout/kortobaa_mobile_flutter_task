@@ -33,13 +33,40 @@ class EditInfoBottomSheet extends StatefulWidget {
 class _EditInfoBottomSheetState extends State<EditInfoBottomSheet> {
   TextEditingController _userNameController;
   TextEditingController _emailController;
+  bool _textFilled;
   File _image;
 
   @override
   void initState() {
-    _userNameController = TextEditingController();
-    _emailController = TextEditingController();
+    _textFilled = false;
+    _userNameController = TextEditingController()..addListener(_isFieldChanged);
+    _emailController = TextEditingController()..addListener(_isFieldChanged);
     super.initState();
+  }
+
+  void _isFieldChanged() {
+    final String userNameText = _userNameController.text;
+    final String emailText = _emailController.text;
+    if (userNameText != '' || emailText != '') {
+      setState(() {
+        _textFilled = true;
+      });
+    } else {
+      setState(() {
+        _textFilled = false;
+      });
+    }
+  }
+
+  void _saveChanges() {
+    String userNameFieldText = _userNameController.text;
+    String emailFieldText = _emailController.text;
+    String userName = userNameFieldText == '' ? null : userNameFieldText;
+    String email = emailFieldText == '' ? null : emailFieldText;
+    String imageUri = _image == null ? null : _image.absolute.path;
+    Provider.of<UserProvider>(context, listen: false)
+        .updateUser(userName, email, imageUri);
+    Navigator.of(context).pop();
   }
 
   @override
@@ -106,23 +133,24 @@ class _EditInfoBottomSheetState extends State<EditInfoBottomSheet> {
                   ],
                 ),
               ),
-              RaisedButton(
-                onPressed: () {
-                  String userNameField = _userNameController.text;
-                  String emailField = _emailController.text;
-                  String userName = userNameField == '' ? null : userNameField;
-                  String email = emailField == '' ? null : emailField;
-                  String imageUri =
-                      _image == null ? null : _image.absolute.path;
-                  Provider.of<UserProvider>(context, listen: false)
-                      .updateUser(userName, email, imageUri);
-                  Navigator.of(context).pop();
-                },
-                color: Theme.of(context).accentColor,
-                child: Text(
-                  localizations.translate('save'),
-                  style: textStyles.tabsTextStyle,
-                ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: <Widget>[
+                  RaisedButton(
+                    onPressed: _saveChanges,
+                    color: Theme.of(context).accentColor,
+                    child: Text(
+                      localizations.translate('save'),
+                      style: textStyles.tabsTextStyle,
+                    ),
+                  ),
+                  // If user made changes, show a text indicating that he has to click save
+                  if (_textFilled || _image != null)
+                    Text(
+                      localizations.translate('save_changes'),
+                      style: TextStyle(color: Colors.red, fontSize: 12),
+                    ),
+                ],
               )
             ],
           ),
