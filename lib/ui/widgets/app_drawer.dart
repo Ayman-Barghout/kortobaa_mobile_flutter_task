@@ -7,6 +7,8 @@ import 'package:kortobaa_mobile_flutter_task/core/services/localization/app_loca
 import 'package:kortobaa_mobile_flutter_task/ui/views/favorites_page.dart';
 import 'package:kortobaa_mobile_flutter_task/ui/views/settings_page.dart';
 import 'package:kortobaa_mobile_flutter_task/ui/widgets/edit_info_bottom_sheet.dart';
+import 'package:kortobaa_mobile_flutter_task/ui/shared/app_colors.dart'
+    as appColors;
 import 'package:provider/provider.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -30,19 +32,19 @@ class AppDrawer extends StatelessWidget {
           subtitle: Text(user.email),
         ),
         Divider(
-          color: Theme.of(context).accentColor,
+          color: appColors.accentColor,
           thickness: 2,
           indent: 10,
         ),
         ListTile(
-          leading: Icon(Icons.home),
+          leading: Icon(Icons.home, color: appColors.accentColor),
           title: Text(
             localizations.translate('homepage'),
           ),
           onTap: () => Navigator.of(context).pop(),
         ),
         ListTile(
-          leading: Icon(Icons.edit),
+          leading: Icon(Icons.edit, color: appColors.accentColor),
           title: Text(
             localizations.translate('edit_info'),
           ),
@@ -52,7 +54,7 @@ class AppDrawer extends StatelessWidget {
           },
         ),
         ListTile(
-          leading: Icon(Icons.settings),
+          leading: Icon(Icons.settings, color: appColors.accentColor),
           title: Text(
             localizations.translate('settings'),
           ),
@@ -64,7 +66,7 @@ class AppDrawer extends StatelessWidget {
           },
         ),
         ListTile(
-          leading: Icon(Icons.favorite),
+          leading: Icon(Icons.favorite, color: appColors.accentColor),
           title: Text(
             localizations.translate('favorites'),
           ),

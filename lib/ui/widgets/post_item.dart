@@ -22,7 +22,7 @@ class PostItem extends StatelessWidget {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Card(
-          elevation: 2,
+          elevation: 5,
           child: Column(
             children: <Widget>[
               Padding(

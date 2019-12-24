@@ -91,6 +91,7 @@ class _HomePageState extends State<HomePage>
                 ),
               ),
             )
+          // SizedBox instead of null to disable weird animation due to using Align on FAB
           : SizedBox(),
     );
   }
