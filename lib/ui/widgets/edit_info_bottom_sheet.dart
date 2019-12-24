@@ -77,7 +77,7 @@ class _EditInfoBottomSheetState extends State<EditInfoBottomSheet> {
       duration: Duration(milliseconds: 300),
       padding: MediaQuery.of(context).viewInsets,
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 8, vertical: 32),
+        padding: EdgeInsets.only(right: 8, left: 8,  top : 32),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
