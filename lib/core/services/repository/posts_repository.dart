@@ -10,7 +10,7 @@ class PostsRepository {
       String imageUri, List<Post> posts) async {
     Post newPost = Post(
       id,
-      title ?? "$id عنوان المقالة",
+      title ?? "عنوان المقالة $id ",
       description ??
           "هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى. ",
       imageUri ?? "assets/images/post_2.png",

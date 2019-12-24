@@ -5,7 +5,8 @@ An application for Kortobaa mobile flutter task
 ## Packages used
 
 - Provider for state management.
-- Shared Preferences for saving key value pairs locally (Locale, User info).
+- Shared Preferences for saving key value pairs locally (Locale, User info and posts).
+- Image picker for picking images for posts and profile picture. 
 
 ## Project Structue
 

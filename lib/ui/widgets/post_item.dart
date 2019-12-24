@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:kortobaa_mobile_flutter_task/core/models/post.dart';
 import 'package:kortobaa_mobile_flutter_task/core/providers/favorites_provider.dart';
@@ -87,7 +89,10 @@ class PostItem extends StatelessWidget {
                   ],
                 ),
               ),
-              Image.asset(post.imageUri),
+              post.imageUri == 'assets/images/post_1.png' ||
+                      post.imageUri == 'assets/images/post_2.png'
+                  ? Image.asset(post.imageUri)
+                  : Image.file(File(post.imageUri)),
               Padding(
                 padding: const EdgeInsets.symmetric(
                     horizontal: 16.0, vertical: 12.0),
